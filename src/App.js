@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddFoodForm from './components/AddFoodForm';
+import FoodBox from './components/FoodBox';
+import Search from './components/Search';
+import foods from './foods.json';
 
 function App() {
+
+  const [allFoods, setAllFoods] = useState(foods)
+  const [filteredFoods, setFilteredFoods] = useState(allFoods)
+
+  const handleAddNewFood = (e, newFoodObject, handleResetForm ) => {
+    e.preventDefault()
+    setAllFoods([...allFoods, newFoodObject])
+    handleResetForm()
+  }
+
+  const handleFilterFood = (input) => {
+    const filtered = allFoods.filter((element) => {
+      return element.name.toLowerCase().includes(input.toLowerCase())
+    })
+
+    setFilteredFoods(filtered)
+    
+  }
+
+  const handleDeleteFood = (foodName) => {
+    const newFoodsArray = allFoods.filter((element) => {
+      return element.name.toLowerCase() !== foodName.toLowerCase()
+    })
+
+    setAllFoods(newFoodsArray)
+    setFilteredFoods(newFoodsArray)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App foodBox-container">
+
+    <Search handleFilterFood={handleFilterFood} />
+    
+    <AddFoodForm handleAddNewFood={handleAddNewFood} />
+
+    {/* Updated content inside map in iteration 3 */}
+      {filteredFoods.map((element) => {
+        return(
+          <FoodBox handleDeleteFood={handleDeleteFood} key={element.name} food={element} />
+        )
+      } )}
     </div>
   );
 }

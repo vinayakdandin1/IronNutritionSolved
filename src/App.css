@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.foodBox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.searchBar {
+  margin: 40px;
+}
+
+.searchBar input {
+  width: 70vw;
+}
+
