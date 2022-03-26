@@ -33,8 +33,8 @@ function AddFoodForm({handleAddNewFood}) {
     }
 
   return (
-    //   You can have empty <> tags instead of <div> for better performance. They are called react fragments. 
-    <>
+    
+    <div className='addForm'>
 
         <form onSubmit={(e) => handleAddNewFood(e, newFoodToAdd, handleResetForm)} >
             <label>
@@ -58,7 +58,7 @@ function AddFoodForm({handleAddNewFood}) {
             <button type="submit" value="Submit">Submit</button>
         </form>
 
-    </>
+    </div>
   )
 }
 

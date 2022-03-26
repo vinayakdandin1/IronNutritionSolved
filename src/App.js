@@ -12,7 +12,9 @@ function App() {
 
   const handleAddNewFood = (e, newFoodObject, handleResetForm ) => {
     e.preventDefault()
+    console.log(newFoodObject, "newFoodObject");
     setAllFoods([...allFoods, newFoodObject])
+    setFilteredFoods([...filteredFoods, newFoodObject])
     handleResetForm()
   }
 

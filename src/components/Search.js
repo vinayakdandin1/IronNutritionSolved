@@ -10,7 +10,7 @@ function Search({handleFilterFood}) {
     }
 
   return (
-    <div>
+    <div className='searchBar'>
 
         <input
           type='text'
